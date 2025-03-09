@@ -3,5 +3,12 @@ const dotenv = @import("dotenv.zig");
 
 pub fn main() !void {
     const allocator = std.heap.page_allocator;
-    _ = try dotenv.load(allocator, ".env");
+
+    std.debug.print("Loading .env\n", .{});
+    var map = try dotenv.load(allocator, ".env");
+    defer map.deinit();
+
+    const api_key = map.get("API_KEY") orelse return error.MISSING_API_KEY;
+
+    std.debug.print("api key: {s}\n", .{api_key});
 }

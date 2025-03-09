@@ -14,7 +14,6 @@ pub fn load(allocator: std.mem.Allocator, file_path: []const u8) !std.StringHash
     const file_size = file_info.size;
 
     const contents = try allocator.alloc(u8, file_size);
-    defer allocator.free(contents);
 
     _ = file.readAll(contents) catch unreachable;
 
@@ -43,7 +42,6 @@ pub fn parseLine(line: []const u8) !?EnvEntry {
     if (trimmed.len == 0 or trimmed[0] == '#') {
         return null;
     }
-    std.debug.print("parsing line: {s}\n", .{trimmed});
 
     const eql_pos = std.mem.indexOf(u8, trimmed, "=") orelse return error.MissingEqualSign;
 
