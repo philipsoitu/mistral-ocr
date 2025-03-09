@@ -1,5 +1,7 @@
 const std = @import("std");
+const dotenv = @import("dotenv.zig");
 
 pub fn main() !void {
-    std.debug.print("Hello, World!\n", .{});
+    const allocator = std.heap.page_allocator;
+    _ = try dotenv.load(allocator, ".env");
 }
