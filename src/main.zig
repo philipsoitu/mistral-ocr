@@ -13,4 +13,5 @@ pub fn main() !void {
     const api_key = map.get("API_KEY") orelse return error.MISSING_API_KEY;
 
     std.debug.print("api key: {s}\n", .{api_key});
+    try request.requestPOST(api_key);
 }
