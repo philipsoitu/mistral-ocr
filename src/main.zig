@@ -1,5 +1,7 @@
 const std = @import("std");
+const http = std.http;
 const dotenv = @import("dotenv.zig");
+const request = @import("request.zig");
 
 pub fn main() !void {
     const allocator = std.heap.page_allocator;
