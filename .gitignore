@@ -3,3 +3,6 @@ zig-out
 
 .env*
 !.env.example
+
+files/*
+output/*
