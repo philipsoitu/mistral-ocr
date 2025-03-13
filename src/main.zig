@@ -1,7 +1,7 @@
 const std = @import("std");
 const http = std.http;
 const dotenv = @import("dotenv.zig");
-const request = @import("request.zig");
+const mistral = @import("mistral.zig");
 
 pub fn main() !void {
     const allocator = std.heap.page_allocator;
@@ -13,5 +13,5 @@ pub fn main() !void {
     const api_key = map.get("API_KEY") orelse return error.MISSING_API_KEY;
 
     std.debug.print("api key: {s}\n", .{api_key});
-    try request.requestPOST(api_key);
+    try mistral.listFiles(api_key);
 }
