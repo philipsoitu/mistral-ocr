@@ -14,7 +14,6 @@ pub fn main() !void {
 
     std.debug.print("api key was loaded\n", .{});
 
-    const contents = try mistral.ocr(api_key);
+    const contents = try mistral.ocr(api_key, "");
     try file.saveToFile("output/ocr_output.json", contents);
-    std.debug.print("Saved to output/ocr_output.json\n", .{});
 }
